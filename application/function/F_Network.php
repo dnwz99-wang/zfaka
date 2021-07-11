@@ -30,7 +30,7 @@ if ( ! function_exists('getClientIP')){
 		$ip=explode(',',$ip)[0];
 		
 		if(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6)) {
-		    return ip;
+		    return $ip;
 		}else {
 		    return "invalid ip";
 		}
