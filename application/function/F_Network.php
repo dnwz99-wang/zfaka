@@ -28,7 +28,8 @@ if ( ! function_exists('getClientIP')){
 		}
 		//只取第一个
 		$ip_array=explode(',',$ip);
-		return $ip_array[0];
+		$ip = preg_replace("/^([\d\.]+).*/","\\1",$ip_array[0]);
+		return $ip;
 	}
 }
 
