@@ -27,8 +27,14 @@ if ( ! function_exists('getClientIP')){
 			$ip = "Unknown"; 
 		}
 		//只取第一个
-		$ip_array=explode(',',$ip);
-		return $ip_array[0];
+		$ip=explode(',',$ip)[0];
+		
+		if(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6)) {
+		    return $ip;
+		}else {
+		    return "invalid ip";
+		}
+		#return $ip;
 	}
 }
 
