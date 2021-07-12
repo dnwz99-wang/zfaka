@@ -1,3 +1,7 @@
+# <font color=red>紧急提醒</font>
+>!!!ZFAKA发现重大安全隐患,请大家尽快下载F_Network.php文件进行修复!!!
+>感谢 榆木 yumusb 同学 参考地址:https://github.com/zlkbdotnet/zfaka/pull/237
+
 # ZFAKA发卡系统(本系统基于yaf+layui开发)
 
 >**郑重申明：本项目为开源程序，仅做技术交流使用**
