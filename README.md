@@ -114,7 +114,7 @@
 > 参考：[系统如何升级？](https://github.com/zlkbdotnet/zfaka/wiki/%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%EF%BC%9F)
 
 # 四、BUG与问题反馈
-* 相关问题QQ交流群：701035212 [收费群]
+* 相关问题QQ交流群：701035212
    
 # 五、推广时间
 * 全国IDC行业精英群:572511758
