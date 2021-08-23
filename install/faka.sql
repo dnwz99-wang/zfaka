@@ -416,8 +416,8 @@ CREATE TABLE IF NOT EXISTS `t_user` (
 -- 转存表中的数据 `t_user`
 --
 
-INSERT INTO `t_user` (`id`, `groupid`, `nickname`, `password`, `email`, `qq`, `mobilephone`, `money`, `integral`, `tag`, `createtime`) VALUES
-(1, 1, '测试账户', 'e10adc3949ba59abbe56e057f20f883e', '43036456@qq.com', '43036456', '13717335559', '0.00', 0, '资料空白是大帅锅', 1525857488);
+-- INSERT INTO `t_user` (`id`, `groupid`, `nickname`, `password`, `email`, `qq`, `mobilephone`, `money`, `integral`, `tag`, `createtime`) VALUES
+-- (1, 1, '测试账户', 'e10adc3949ba59abbe56e057f20f883e', '43036456@qq.com', '43036456', '13717335559', '0.00', 0, '资料空白是大帅锅', 1525857488);
 
 -- --------------------------------------------------------
 

@@ -102,6 +102,10 @@ class SettingController extends AdminBasicController
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		$data = array();
+		if($name=='orderprefix'){
+			$value_string = new \Safe\MyString($value);
+			$value = $value_string->trimall()->qufuhao2()->getValue();
+		}
 		
 		if($method AND $name AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {

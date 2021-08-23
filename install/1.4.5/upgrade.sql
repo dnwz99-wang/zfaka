@@ -1,0 +1,1 @@
+DELETE FROM `t_user` WHERE `email` = '43036456@qq.com';

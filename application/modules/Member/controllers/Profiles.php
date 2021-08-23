@@ -45,10 +45,13 @@ class ProfilesController extends MemberBasicController
 		if($nickname AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$nickname_string = new \Safe\MyString($nickname);
-				$nickname = $nickname_string->trimall()->getValue();
+				$nickname = $nickname_string->trimall()->qufuhao()->getValue();
 				
 				$qq_string = new \Safe\MyString($qq);
-				$qq = $qq_string->trimall()->getValue();
+				$qq = $qq_string->trimall()->qufuhao()->getValue();
+
+				$tag_string = new \Safe\MyString($tag);
+				$tag = $tag_string->trimall()->qufuhao()->getValue();
 				
 				$this->m_user->UpdateByID(array('nickname'=>$nickname,'qq'=>$qq,'tag'=>$tag),$this->userid);
 				$data = array('code' => 1, 'msg' => '更新成功');
@@ -83,7 +86,6 @@ class ProfilesController extends MemberBasicController
 		$password = $this->getPost('password',false);
 		$oldpassword = $this->getPost('oldpassword',false);
 		$csrf_token = $this->getPost('csrf_token', false);
-		
 		$data = array();
 		
 		if($password AND $oldpassword AND $csrf_token){
