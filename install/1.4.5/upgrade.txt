@@ -2,3 +2,4 @@
 2.对orderprefix字段的后台提交做了强限制；
 3.JSON编码可能导致的AJAX失败问题;
 4.删除默认用户账户;
+5.增加coinbase支付@huangfengye，使用方式请看 https://github.com/huangfengye/CoinbaseForZfaka
