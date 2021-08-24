@@ -8,7 +8,8 @@
 set_time_limit(0);
 class UpgradeController extends AdminBasicController
 {
-	private $github_url = "https://github.com/zlkbdotnet/zfaka/releases";
+	private $github_url = "https://api.github.com/repos/zfaka-plus/zfaka/releases";
+	private $versiondomain = "ver.zfaka.sql.pub";
 	private $remote_version = '';
 	private $up_version = '';
     public function init()
@@ -64,7 +65,7 @@ class UpgradeController extends AdminBasicController
 					$this->setSession('up_version',$up_version);
 				}
 				if(version_compare(trim(VERSION), trim($up_version), '<' )){
-					$url = "https://github.com/zlkbdotnet/zfaka/archive/{$up_version}.zip";
+					$url = "https://github.com/zfaka-plus/zfaka/archive/{$up_version}.zip";
 					$up = $this->_download($url,TEMP_PATH);
 					if($up){
 						\Yaf\Loader::import(FUNC_PATH.'/F_File.php');
@@ -87,19 +88,15 @@ class UpgradeController extends AdminBasicController
 	{
 		$version = VERSION;
 		try{
-			$version_reg = '#<a href="/zlkbdotnet/zfaka/archive/(.*?).zip"#';//列表规则 
-			$version_html= $this->_get_url_contents($this->github_url,array());
-			$version_html=mb_convert_encoding($version_html, 'utf-8', 'gbk');
-			preg_match_all($version_reg , $version_html , $cate_matches); 
-			if(isset($cate_matches[1]) AND !empty($cate_matches[1])){
-				$up_version = trim($cate_matches[1][0]);
-				if(strlen($up_version)==5){
-					$version = $up_version;
-					$this->remote_version = $up_version;
-				}
+			$version_json= $this->_get_url_contents($this->github_url);
+			$latest_version = json_decode($version_json,true)[0];
+			$version = $latest_version['tag_name'];
+			if($version<=0){
+				$version = str_replace('"','',json_decode(file_get_contents("http://dns.alidns.com/resolve?name=".$this->versiondomain."&type=16"),TRUE)['Answer']['0']['data']);
 			}
+			
 		} catch(\Exception $e) {
-			//
+			$version = str_replace('"','',json_decode(file_get_contents("http://dns.alidns.com/resolve?name=".$this->versiondomain."&type=16"),TRUE)['Answer']['0']['data']);
 		}
 		return $version;
 	}
