@@ -18,6 +18,7 @@ class CaptchaController extends BasicController
 		$l_captcha = new \Captcha\Captcha();
 		$code=$l_captcha->getPhrase();
 		$this->setSession($t.'Captcha',$code);
+		header('Content-Type: image/jpeg');
 		$l_captcha->build()->output();
 		exit();
     }

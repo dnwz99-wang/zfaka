@@ -37,7 +37,7 @@ class UpgradeController extends AdminBasicController
 						$this->setSession('up_version',$up_version);
 					}
 					if(version_compare(trim(VERSION), trim($up_version), '<' )){
-						$data = array('url'=>$this->github_url,'up_version'=>$up_version,'zip'=>"https://github.com/zlkbdotnet/zfaka/archive/{$up_version}.zip");
+						$data = array('url'=>$this->github_url,'up_version'=>$up_version,'zip'=>"https://github.com/zfaka-plus/zfaka/archive/{$up_version}.zip");
 						$this->getView()->assign($data);
 					}else{
 						$this->redirect('/'.ADMIN_DIR);
