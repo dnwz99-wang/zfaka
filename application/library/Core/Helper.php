@@ -118,9 +118,11 @@ abstract class Helper {
 				$file = FUNC_PATH.'/F_String.php';
 				Yaf\Loader::import($file);
 				if(isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"])=="xmlhttprequest"){ 
-					$data = JSON($data);
+					//$data = JSON($data);
+					$data = json_encode($data, JSON_UNESCAPED_UNICODE);
 				}else if(isset($_REQUEST['ajax'])){
-					$data = JSON($data);
+					//$data = JSON($data);
+					$data = json_encode($data, JSON_UNESCAPED_UNICODE);
 				}else{
 					//pr($data); die; // URL 测试打印数组出来
 					echo json_encode($data, JSON_UNESCAPED_UNICODE); die;
@@ -128,7 +130,8 @@ abstract class Helper {
 			break;
 			
 			case 'jsonp':
-				$data = $_GET['jsoncallback'] .'('. json_encode($data) .')';
+				
+				$data = htmlspecialchars($_GET['jsoncallback'],ENT_QUOTES) .'('. json_encode($data) .')';
 			break;
 			
 			case 'string':

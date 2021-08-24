@@ -16,4 +16,9 @@ if(defined('APP_PATH')) {
 		echo "<div style=\"border: 1px dashed #cc0000;font-family:Tahoma;background-color:#FBEEEB;width:100%;padding:10px;color:#cc0000;\"><strong>警告：</strong><br>请按照安装要求配置yaf.use_namespace=1</div>";
 		exit();	
 	}
+	//4.必须修改后台地址
+	if(file_exists(APP_PATH.'/application/modules/Admin')){
+		echo "<div style=\"border: 1px dashed #cc0000;font-family:Tahoma;background-color:#FBEEEB;width:100%;padding:10px;color:#cc0000;\"><strong>警告：</strong><br>请修改后台目录,SSH登录后在当前网站目录【".APP_PATH."】下执行 php change.php Yourdir</div>";
+		exit();
+	}
 }

@@ -272,6 +272,7 @@ INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_
 (7, '有赞接口', '微信', '/res/images/pay/yzpay.jpg', 'yzpay', 'RSA2', '', '', '', '', '', '',0, 0),
 (11, '微信H5支付', '微信', '/res/images/pay/weixin.jpg', 'wxh5', 'MD5', '', '', '', '', '','', 0, 0),
 (12, 'PAYPAL', 'PAYPAL', '/res/images/pay/paypal.jpg', 'paypal', 'RSA2', '', '', '', '', 'live','7', 0, 0);
+(13, 'CoinPay', 'CoinPay', '/res/images/pay/coinbase.png', 'coinpay', 'MD5', '', '', '', '', '', '', 6000, 0);
 
 -- --------------------------------------------------------
 
@@ -416,8 +417,8 @@ CREATE TABLE IF NOT EXISTS `t_user` (
 -- 转存表中的数据 `t_user`
 --
 
-INSERT INTO `t_user` (`id`, `groupid`, `nickname`, `password`, `email`, `qq`, `mobilephone`, `money`, `integral`, `tag`, `createtime`) VALUES
-(1, 1, '测试账户', 'e10adc3949ba59abbe56e057f20f883e', '43036456@qq.com', '43036456', '13717335559', '0.00', 0, '资料空白是大帅锅', 1525857488);
+-- INSERT INTO `t_user` (`id`, `groupid`, `nickname`, `password`, `email`, `qq`, `mobilephone`, `money`, `integral`, `tag`, `createtime`) VALUES
+-- (1, 1, '测试账户', 'e10adc3949ba59abbe56e057f20f883e', '43036456@qq.com', '43036456', '13717335559', '0.00', 0, '资料空白是大帅锅', 1525857488);
 
 -- --------------------------------------------------------
 

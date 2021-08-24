@@ -316,7 +316,9 @@ class OrderController extends ProductBasicController
 			if(isset($_SERVER['HTTP_REFERER'])){
 				$referer_url = parse_url($_SERVER['HTTP_REFERER']);
 				$web_url = parse_url($this->config['weburl']);
-				if($referer_url['host']!=$web_url['host']){
+				// 范围增宽，放开子域名限制
+				#if($referer_url['host']!=$web_url['host']){
+				if(stripos($referer_url['host'],$web_url['host']) === false && stripos($web_url['host'],$referer_url['host']) === false){
 					$img = APP_PATH.'/public/res/images/pay/weburl-error.png';
 					@header("Content-Type:image/png");
 					echo file_get_contents($img);
