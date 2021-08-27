@@ -43,8 +43,9 @@ class LoginController extends MemberBasicController
 		$email    = $this->getPost('email',false);
 		$password = $this->getPost('password');
 		
-		$password_string = new \Safe\MyString($password);
-		$password = $password_string->trimall()->qufuhao()->getValue();
+		//fix
+		//$password_string = new \Safe\MyString($password);
+		//$password = $password_string->trimall()->qufuhao()->getValue();
 		
 		$csrf_token = $this->getPost('csrf_token', false);
 		
