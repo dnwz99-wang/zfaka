@@ -38,6 +38,41 @@ class SetptwoController extends BasicController
 		$user = $this->getPost('user');
 		$password = $this->getPost('password');
 		$dbname = $this->getPost('dbname');
+		$admindir = $this->getPost('admindir');
+
+		// 2021 09 05 新增安装时修改后台功能
+		if(!preg_match("/^[A-Z][a-z]{3,10}$/",$admindir)){
+			$data = array('code' => 1001, 'msg' =>"后台目录只能以大写字母开头，并且后面跟3-10位的小写字母");
+			Helper::response($data);
+		}
+		
+		$this->setSession('AdminDir', $admindir);
+		$basedir = dirname(dirname($_SERVER['SCRIPT_FILENAME']));
+		$applicationini = file_get_contents($basedir.'/conf/application.ini');
+        $init = file_get_contents($basedir.'/application/init.php');
+		$findadminpath = 0;
+		foreach(scandir($basedir."/application/modules/") as $p){
+            if(file_exists($basedir.'/application/modules/'.$p.'/controllers/Payment.php')){
+                $nowadminpath = $p;
+                $findadminpath = 1;
+                break;
+            }
+        }
+        if($findadminpath = 1){
+            if(rename($basedir.'/application/modules/'.$nowadminpath,$basedir.'/application/modules/'.$admindir)){
+                file_put_contents($basedir.'/conf/application.ini',preg_replace('/application.modules.*/i', 'application.modules = "Index,Member,Product,'.$admindir.',Crontab,Install"', $applicationini));
+                file_put_contents($basedir.'/application/init.php',preg_replace("/.*'ADMIN_DIR.*;/i","define('ADMIN_DIR','$admindir');",$init));
+            }else {
+                $data = array('code' => 1001, 'msg' =>"修改后台目录失败");
+			    Helper::response($data);
+            }
+        }else{
+            $data = array('code' => 1001, 'msg' =>"获取后台目录失败");
+			Helper::response($data);
+        }
+        
+        
+        
 		
 		$data = array();
 		
@@ -91,12 +126,25 @@ class SetptwoController extends BasicController
 					'product : common' => ['READ_HOST' => $host,'WRITE_HOST' => $host,'READ_PORT' => $port,'WRITE_PORT' => $port,'READ_USER' => $user,'WRITE_USER' => $user,'READ_PSWD' => $password,'WRITE_PSWD' => $password,'Default' => $dbname]
 				]);
 				$ini->write();
-					
-				$result = @file_put_contents(INSTALL_LOCK,VERSION,LOCK_EX);
-				if (!$result){
-					$data = array('code' => 1004, 'msg' =>"无法写入安装锁定到".INSTALL_LOCK."文件，请检查是否有写权限");
+				
+				$querytableline = $pdo->prepare("SELECT COUNT(TABLE_NAME) as count FROM  information_schema.TABLES WHERE TABLE_SCHEMA = ?");
+				$querytableline->execute(array($dbname));
+				$remotetableline = intval($querytableline->fetchAll(PDO::FETCH_ASSOC)[0]['count']);
+
+				preg_match_all('/`(t_.*?)`/',file_get_contents($this->install_sql),$sqlfilelines);
+				$sqlfiletableline=count(array_unique($sqlfilelines[1])));
+
+				if($remotetableline>=$sqlfiletableline){
+					$result = @file_put_contents(INSTALL_LOCK,VERSION,LOCK_EX);
+					if (!$result){
+						$data = array('code' => 1004, 'msg' =>"无法写入安装锁定到".INSTALL_LOCK."文件，请检查是否有写权限");
+					}else{
+						$data = array('code' => 1, 'msg' =>"SUCCESS");
+					}
+				}else{
+					$data = array('code' => 1004, 'msg' =>"导入表异常，请检查或者手动导入");
 				}
-				$data = array('code' => 1, 'msg' =>"SUCCESS");
+				
             } catch (PDOException $e) {
 				$data = array('code' => 1001, 'msg' =>"失败:".$e->getMessage());
             }

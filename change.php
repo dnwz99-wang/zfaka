@@ -22,8 +22,8 @@ if($flag = 1){
         exit();
     }
     $todir = trim($argv[1]);
-    if(!preg_match('/^[A-Z][a-z]{5,10}$/',$todir)){
-        echo "[-]Your dir format is wrong. Please use [A-Z][a-z]{5,10}".PHP_EOL;
+    if(!preg_match('/^[A-Z][a-z]{3,10}$/',$todir)){
+        echo "[-]Your dir format is wrong. Please use [A-Z][a-z]{3,10}".PHP_EOL;
         exit();
     }
     

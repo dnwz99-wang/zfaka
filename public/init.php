@@ -16,9 +16,9 @@ if(defined('APP_PATH')) {
 		echo "<div style=\"border: 1px dashed #cc0000;font-family:Tahoma;background-color:#FBEEEB;width:100%;padding:10px;color:#cc0000;\"><strong>警告：</strong><br>请按照安装要求配置yaf.use_namespace=1</div>";
 		exit();	
 	}
-	//4.必须修改后台地址
-	if(file_exists(APP_PATH.'/application/modules/Admin')){
-		echo "<div style=\"border: 1px dashed #cc0000;font-family:Tahoma;background-color:#FBEEEB;width:100%;padding:10px;color:#cc0000;\"><strong>警告：</strong><br>请修改后台目录。打开SSH或者CMD终端，进入到【".APP_PATH."/】目录下，然后执行【php change.php Yourdir】，其中Yourdir是你将要修改的后台目录，应为一个大写字母后跟5-10个小写字母的字符串。</div>";
-		exit();
-	}
+	// //4.必须修改后台地址
+	// if(file_exists(APP_PATH.'/application/modules/Admin')){
+	// 	echo "<div style=\"border: 1px dashed #cc0000;font-family:Tahoma;background-color:#FBEEEB;width:100%;padding:10px;color:#cc0000;\"><strong>警告：</strong><br>请修改后台目录。打开SSH或者CMD终端，进入到【".APP_PATH."/】目录下，然后执行【php change.php Yourdir】，其中Yourdir是你将要修改的后台目录，应为一个大写字母后跟5-10个小写字母的字符串。</div>";
+	// 	exit();
+	// }
 }

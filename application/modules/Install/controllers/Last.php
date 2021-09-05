@@ -18,6 +18,7 @@ class LastController extends BasicController
     {
 		if(file_exists(INSTALL_LOCK)){
 			$data = array();
+			$data['admindir'] = $this->getSession('AdminDir');
 			$this->getView()->assign($data);
 		}else{
 			$this->redirect("/install/");

@@ -34,7 +34,7 @@
 	<div class="layui-container fly-marginTop fly-user-main">
 		<div class="layui-row layui-col-space15">
 			<div class="layui-card" style="color:#000000;">
-			  <div class="layui-card-header">3.安装数据库</div>
+			  <div class="layui-card-header">3.安装数据库与设置后台目录</div>
 			  <div class="layui-card-body">
 				<div class="layui-form-pane layui-tab-item layui-show">
                     <form class="layui-form" method="post">
@@ -69,7 +69,13 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-							<button class="layui-btn" key="set-mine" lay-filter="setptwo" lay-submit>安装数据库</button>
+                            <label for="admindir" class="layui-form-label">后台目录</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="admindir" name="admindir" required lay-verify="required|admindir" autocomplete="off" class="layui-input" value="Goadmin">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+							<button class="layui-btn" key="set-mine" lay-filter="setptwo" lay-submit>安装数据库与设置后台目录</button>
                         </div>
                     </form>
 				</div>
