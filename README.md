@@ -122,3 +122,6 @@
 > 资料空白 https://github.com/zlkbdotnet/
 
 > 榆木yumusb https://github.com/yumusb
+
+# 六、免责声明
+请查看 [/disclaimer.md](/disclaimer.md)
