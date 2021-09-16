@@ -132,7 +132,7 @@ class SetptwoController extends BasicController
 				$remotetableline = intval($querytableline->fetchAll(PDO::FETCH_ASSOC)[0]['count']);
 
 				preg_match_all('/`(t_.*?)`/',file_get_contents($this->install_sql),$sqlfilelines);
-				$sqlfiletableline=count(array_unique($sqlfilelines[1])));
+				$sqlfiletableline=count(array_unique($sqlfilelines[1]));
 
 				if($remotetableline>=$sqlfiletableline){
 					$result = @file_put_contents(INSTALL_LOCK,VERSION,LOCK_EX);
