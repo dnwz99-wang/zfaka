@@ -276,10 +276,12 @@ class OrderController extends ProductBasicController
 							}else{
 								try{
 									$orderid = $order['orderid'];
-									if($this->config['paysubjectswitch']>0){
+									if($this->config['paysubjectswitch']=='0'){
+										$productname = $order['productname'];
+									}elseif($this->config['paysubjectswitch']=='1'){
 										$productname = $order['orderid'];
 									}else{
-										$productname = $order['productname'];
+										$productname = $this->config['paysubjectswitch'];
 									}
 									$payclass = "\\Pay\\".$paymethod."\\".$paymethod;
 									$PAY = new $payclass();

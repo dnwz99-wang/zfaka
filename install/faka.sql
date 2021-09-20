@@ -100,7 +100,7 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (25, 1, 'limitorderqty', '5', '单笔订单数量限制', 1, 1453452674),
 (26, 1, 'discountswitch', '0', '折扣开关', 1, 1453452674),
 (27, 1, 'qrserver', '/product/order/showqr/?url=', '生成二维码的服务地址,默认请填写:/product/order/showqr/?url=', 1, 1453452674),
-(28, 1, 'paysubjectswitch', '0', '订单说明显示:0商品名,1订单号', 1, 1453452674),
+(28, 1, 'paysubjectswitch', '0', '订单说明显示:0商品名,1订单号,或者自定义', 1, 1453452674),
 (30, 1, 'emailswitch', '1', '发送用户邮件开关', '1', 1546063186),
 (31, 1, 'emailsendtypeswitch', '1', '发送用户邮件方式筛选开关', '1', '1546063186'),
 (32, 1, 'querycontactswitch', '1', '查询方式(联系方式)开关', '1', '1546063186'),

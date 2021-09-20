@@ -16,16 +16,23 @@
                                 <input type="text" id="name" name="name" readonly="readonly" disabled lay-verify="required" autocomplete="off" value="<?php echo $item['name'];?>" class="layui-input">
                             </div>
                         </div>
-
+                        
 						<div class="layui-form-item">
+                            
 							<label for="value" class="layui-form-label">值</label>
-							<div class="layui-input-inline">
+							<div class="layui-input-inline" id="user-chose">
 								 <select name="value">
 									<option value="0" <?php if($item['value']=="0"):?>selected=""<?php endif;?>>商品名</option>
 									<option value="1" <?php if($item['value']=="1"):?>selected=""<?php endif;?>>订单号</option>
 								  </select>
 							</div>
-						</div> 
+                            <div class="layui-input-inline" id="user-input" style="display: none;">  
+                                <input type="text" name="value" lay-verify="required" autocomplete="off" value="<?php echo $item['value'];?>" class="layui-input">
+							</div>
+							
+							<a onclick="input_change()">自定义</a>
+						</div>
+                        
                        
                         <div class="layui-form-item layui-form-text">
                             <label for="tag" class="layui-form-label">备注</label>
@@ -44,8 +51,18 @@
         </div>
     </div>
 </div>
+
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>
-layui.use('adminsetting');
+layui.use(['adminsetting','jquery'],function(){
+<?php
+    if($item['value']!="0" && $item['value']!="1"){
+        echo "input_change();";
+    }?>
+});
+function input_change(){
+    layui.jquery("#user-chose").toggle();
+    layui.jquery("#user-input").toggle();
+}
 </script>
